@@ -9,21 +9,18 @@ import Foundation
 import Photos
 import PhotosUI
 
-//struct UploadFileData {
-//    init(data: Data, path: URL, conversationID: String? = nil) {
-//        self.data = data
-//        self.path = path
-//        self.conversationID = conversationID
-//    }
-//    
-//    let data: Data
-//    let path: URL
-//    let conversationID: String?
-//}
-
 class PhotoPickerManager {
     static let sharedInstance = PhotoPickerManager()
     private init() { }
+    
+    private var fileModel: FileModel? = nil {
+        didSet {
+            if let fileModel = self.fileModel {
+                NSLog("fileModel - path: \(fileModel.path)")
+                NSLog("fileModel - data size: \(fileModel.size)")
+            }
+        }
+    }
     
     private func photoAuth(_ completion: (() -> Void)? = nil) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
@@ -72,6 +69,10 @@ class PhotoPickerManager {
             picker.dismiss(animated: true)
             completion?(nil)
             return
+        }
+        
+        FileModel.createCompletionParam(result: result) { fileModel in
+            self.fileModel = fileModel
         }
         
         let itemProvider = result.itemProvider

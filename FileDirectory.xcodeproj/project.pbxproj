@@ -14,6 +14,7 @@
 		52D3675D2BB52B4700F0DD59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3675C2BB52B4700F0DD59 /* Assets.xcassets */; };
 		52D367602BB52B4700F0DD59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D3675E2BB52B4700F0DD59 /* LaunchScreen.storyboard */; };
 		52D367692BB52D4500F0DD59 /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367682BB52D4500F0DD59 /* PhotoPickerManager.swift */; };
+		52D3676B2BB53DCD00F0DD59 /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3676A2BB53DCD00F0DD59 /* FileModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		52D3675F2BB52B4700F0DD59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52D367612BB52B4700F0DD59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D367682BB52D4500F0DD59 /* PhotoPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
+		52D3676A2BB53DCD00F0DD59 /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				52D367682BB52D4500F0DD59 /* PhotoPickerManager.swift */,
+				52D3676A2BB53DCD00F0DD59 /* FileModel.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				52D367582BB52B4500F0DD59 /* ViewController.swift in Sources */,
 				52D367542BB52B4500F0DD59 /* AppDelegate.swift in Sources */,
+				52D3676B2BB53DCD00F0DD59 /* FileModel.swift in Sources */,
 				52D367562BB52B4500F0DD59 /* SceneDelegate.swift in Sources */,
 				52D367692BB52D4500F0DD59 /* PhotoPickerManager.swift in Sources */,
 			);
