@@ -64,10 +64,9 @@ class PhotoPickerManager {
         }
     }
     
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], _ completion: ((CGImage?) -> Void)? = nil) {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView) {
         guard let result = results.first else {
             picker.dismiss(animated: true)
-            completion?(nil)
             return
         }
         
@@ -75,26 +74,36 @@ class PhotoPickerManager {
             self.fileModel = fileModel
         }
         
+        view.subviews.forEach { $0.removeFromSuperview() }
+        
         let itemProvider = result.itemProvider
         if itemProvider.hasItemConformingToTypeIdentifier(UTType.video.identifier) {
             // : Video
         } else if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {
             // : Live Photo
         } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, error in
-                guard let data = data,
-                      let cgImageSource = CGImageSourceCreateWithData(data as CFData, nil),
-                      let properties = CGImageSourceCopyPropertiesAtIndex(cgImageSource, 0, nil) else { return }
-                
-                let image = CGImageSourceCreateImageAtIndex(cgImageSource, 0, properties)!
-                DispatchQueue.main.async {
-                    completion?(image)
-                }
-            }
+            settingImage(itemProvider: itemProvider, view: view)
         }
         
         DispatchQueue.main.async {
             picker.dismiss(animated: true)
+        }
+    }
+    
+    private func settingImage(itemProvider: NSItemProvider, view: UIView) {
+        itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, error in
+            guard let data = data,
+                  let cgImageSource = CGImageSourceCreateWithData(data as CFData, nil),
+                  let properties = CGImageSourceCopyPropertiesAtIndex(cgImageSource, 0, nil) else { return }
+            
+            let image = CGImageSourceCreateImageAtIndex(cgImageSource, 0, properties)!
+            DispatchQueue.main.async {
+                let uiImage = UIImage(cgImage: image)
+                let iv = UIImageView(image: uiImage)
+                iv.contentMode = .scaleAspectFit
+                iv.frame = view.bounds
+                view.addSubview(iv)
+            }
         }
     }
 }

@@ -9,8 +9,8 @@ import UIKit
 import PhotosUI
 
 class ViewController: UIViewController {
-
-    @IBOutlet var selectedImage: UIImageView!
+    
+    @IBOutlet weak var centerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,7 @@ class ViewController: UIViewController {
 // MARK: - PHPickerViewControllerDelegate
 extension ViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        PhotoPickerManager.sharedInstance.picker(picker, didFinishPicking: results) { cgImage in
-            if let cgImage = cgImage {
-                self.selectedImage.image = UIImage(cgImage: cgImage)
-            } else {
-                // : not sected photo
-            }
-        }
+        PhotoPickerManager.sharedInstance.picker(picker, didFinishPicking: results, view: centerView)
     }
 }
 
