@@ -76,7 +76,11 @@ class PhotoPickerManager {
         }
         
         let itemProvider = result.itemProvider
-        if itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+        if itemProvider.hasItemConformingToTypeIdentifier(UTType.video.identifier) {
+            // : Video
+        } else if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {
+            // : Live Photo
+        } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, error in
                 guard let data = data,
                       let cgImageSource = CGImageSourceCreateWithData(data as CFData, nil),
@@ -85,9 +89,12 @@ class PhotoPickerManager {
                 let image = CGImageSourceCreateImageAtIndex(cgImageSource, 0, properties)!
                 DispatchQueue.main.async {
                     completion?(image)
-                    picker.dismiss(animated: true)
                 }
             }
+        }
+        
+        DispatchQueue.main.async {
+            picker.dismiss(animated: true)
         }
     }
 }
