@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 // MARK: - PHPickerViewControllerDelegate
 extension ViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        PhotoPickerManager.sharedInstance.picker(picker, didFinishPicking: results, view: centerView)
+        PhotoPickerManager.sharedInstance.picker(picker, didFinishPicking: results, view: centerView, vc: self)
     }
 }
 

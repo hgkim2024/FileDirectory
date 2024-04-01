@@ -8,6 +8,9 @@
 import Foundation
 import Photos
 import PhotosUI
+import UIKit
+import AVKit
+import ImageIO
 
 class PhotoPickerManager {
     static let sharedInstance = PhotoPickerManager()
@@ -21,6 +24,7 @@ class PhotoPickerManager {
             }
         }
     }
+    var looper : AVPlayerLooper? = nil
     
     private func photoAuth(_ completion: (() -> Void)? = nil) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
@@ -64,7 +68,7 @@ class PhotoPickerManager {
         }
     }
     
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView) {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView, vc: ViewController) {
         guard let result = results.first else {
             picker.dismiss(animated: true)
             return
@@ -78,11 +82,15 @@ class PhotoPickerManager {
         
         let itemProvider = result.itemProvider
         if itemProvider.hasItemConformingToTypeIdentifier(UTType.video.identifier) {
-            // : Video
+            // TODO: - 비디오 판단 로직이 잘못됨 - 조건 개선 필요
+            settingVideo(itemProvider: itemProvider, view: view, vc: vc)
         } else if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {
             // : Live Photo
         } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
             settingImage(itemProvider: itemProvider, view: view)
+        } else {
+            // TODO: - 비디오 판단 로직이 잘못됨 - 조건 개선 필요
+            settingVideo(itemProvider: itemProvider, view: view, vc: vc)
         }
         
         DispatchQueue.main.async {
@@ -103,6 +111,41 @@ class PhotoPickerManager {
                 iv.contentMode = .scaleAspectFit
                 iv.frame = view.bounds
                 view.addSubview(iv)
+            }
+        }
+    }
+    
+    private func settingVideo(itemProvider: NSItemProvider, view: UIView, vc: ViewController) {
+        let movie = UTType.movie.identifier
+        
+        itemProvider.loadFileRepresentation(forTypeIdentifier: movie) { url, err in
+            if let url = url {
+                DispatchQueue.main.sync {
+                    // TODO: - GIF 조건 문이 잘못됨 - File Path 로 구분하는 것이 제일 좋은 거 같다.
+                    let loopType = "com.apple.private.auto-loop-gif"
+                    if itemProvider.hasItemConformingToTypeIdentifier(loopType) {
+                        let av = AVPlayerViewController()
+                        let player = AVQueuePlayer(url:url)
+                        av.player = player
+                        vc.addChild(av)
+                        self.looper = AVPlayerLooper(player: player, templateItem: player.currentItem!)
+                        av.view.frame = view.bounds
+                        av.view.backgroundColor = view.backgroundColor
+                        view.addSubview(av.view)
+                        av.didMove(toParent: vc)
+                        player.play()
+                    } else {
+                        let av = AVPlayerViewController()
+                        let player = AVPlayer(url:url)
+                        av.player = player
+                        vc.addChild(av)
+                        av.view.frame = view.bounds
+                        av.view.backgroundColor = view.backgroundColor
+                        view.addSubview(av.view)
+                        av.didMove(toParent: vc)
+                        player.play()
+                    }
+                }
             }
         }
     }
