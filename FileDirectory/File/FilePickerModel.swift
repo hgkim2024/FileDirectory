@@ -58,9 +58,9 @@ extension FilePickerModel {
                     return
                 }
                 let model = FilePickerModel(data: data, path: filePath)
-                Log.tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
-                Log.tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
-                Log.tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
+                Log.tag(.PICKER).tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
+                Log.tag(.PICKER).tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
+                Log.tag(.PICKER).tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
                 
                 completion(model)
             })
@@ -82,9 +82,9 @@ extension FilePickerModel {
             }
             
             let model = FilePickerModel(data: data, path: avAsset.url)
-            Log.tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
-            Log.tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
-            Log.tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
+            Log.tag(.PICKER).tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
+            Log.tag(.PICKER).tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
+            Log.tag(.PICKER).tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
             
             completion(model)
         }

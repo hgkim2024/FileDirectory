@@ -71,12 +71,12 @@ class PhotoPickerManager {
         }
         
         view.subviews.forEach { $0.removeFromSuperview() }
-        Log.tag(.MEDIA).d("media: \(asset.mediaType), source: \(asset.sourceType)")
+        Log.tag(.PICKER).tag(.MEDIA).d("media: \(asset.mediaType), source: \(asset.sourceType)")
         
         let prov = result.itemProvider
         
         for id in prov.registeredTypeIdentifiers {
-            Log.tag(.MEDIA).tag(.ID).d(id)
+            Log.tag(.PICKER).tag(.MEDIA).tag(.ID).d(id)
         }
         
         if (prov.hasItemConformingToTypeIdentifier(UTType.gif.identifier)) {

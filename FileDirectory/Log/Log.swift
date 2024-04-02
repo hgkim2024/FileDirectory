@@ -10,6 +10,8 @@ import UIKit
 // MARK: - Log Tag
 enum Tag: Int {
     // MARK: - 상위 태그
+    case STORAGE
+    case PICKER
     case MEDIA
     case PHOTO
     case VIDEO
