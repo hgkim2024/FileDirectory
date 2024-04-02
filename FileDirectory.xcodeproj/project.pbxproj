@@ -71,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				52937AC62BBB8A6300CB0F53 /* Log */,
-				52D367672BB52D1200F0DD59 /* File */,
+				52D367672BB52D1200F0DD59 /* FilePicker */,
 				52D367532BB52B4500F0DD59 /* AppDelegate.swift */,
 				52D367552BB52B4500F0DD59 /* SceneDelegate.swift */,
 				52D367572BB52B4500F0DD59 /* ViewController.swift */,
@@ -83,13 +83,13 @@
 			path = FileDirectory;
 			sourceTree = "<group>";
 		};
-		52D367672BB52D1200F0DD59 /* File */ = {
+		52D367672BB52D1200F0DD59 /* FilePicker */ = {
 			isa = PBXGroup;
 			children = (
 				52D367682BB52D4500F0DD59 /* PhotoPickerManager.swift */,
 				52D3676A2BB53DCD00F0DD59 /* FilePickerModel.swift */,
 			);
-			path = File;
+			path = FilePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
