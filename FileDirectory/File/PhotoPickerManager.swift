@@ -69,33 +69,38 @@ class PhotoPickerManager {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView, vc: ViewController) {
-        guard let result = results.first else {
+        guard let result = results.first,
+            let identifier = result.assetIdentifier,
+              let fetchResult = getFetchResult(identifier: identifier),
+              let asset = fetchResult.firstObject else {
             picker.dismiss(animated: true)
             return
         }
         
-        FileModel.createCompletionParam(result: result) { fileModel in
-            self.fileModel = fileModel
-        }
-        
         view.subviews.forEach { $0.removeFromSuperview() }
         
-        let itemProvider = result.itemProvider
-        if itemProvider.hasItemConformingToTypeIdentifier(UTType.video.identifier) {
-            // TODO: - 비디오 판단 로직이 잘못됨 - 조건 개선 필요
-            settingVideo(itemProvider: itemProvider, view: view, vc: vc)
-        } else if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {
+        let prov = result.itemProvider
+        if (prov.hasItemConformingToTypeIdentifier(UTType.image.identifier)) {
+            FileModel.imageToFileModel(asset, prov, setFileModel)
+            settingImage(itemProvider: prov, view: view)
+        } else if (prov.hasItemConformingToTypeIdentifier(UTType.video.identifier) ||
+                   prov.hasItemConformingToTypeIdentifier(UTType.appleProtectedMPEG4Video.identifier) ||
+                   prov.hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier)) {
+            FileModel.videoToFileModel(asset, setFileModel)
+            settingVideo(itemProvider: prov, view: view, vc: vc)
+        } else if (prov.hasItemConformingToTypeIdentifier(UTType.livePhoto.identifier)) {
             // : Live Photo
-        } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-            settingImage(itemProvider: itemProvider, view: view)
         } else {
-            // TODO: - 비디오 판단 로직이 잘못됨 - 조건 개선 필요
-            settingVideo(itemProvider: itemProvider, view: view, vc: vc)
+            // : etc ...
         }
         
         DispatchQueue.main.async {
             picker.dismiss(animated: true)
         }
+    }
+    
+    private func setFileModel(fileModel: FileModel?) {
+        self.fileModel = fileModel
     }
     
     private func settingImage(itemProvider: NSItemProvider, view: UIView) {
@@ -148,5 +153,12 @@ class PhotoPickerManager {
                 }
             }
         }
+    }
+    
+    private func getFetchResult(identifier: String) -> PHFetchResult<PHAsset>? {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.fetchLimit = 1
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [identifier], options: fetchOptions)
+        return fetchResult
     }
 }
