@@ -13,7 +13,7 @@ import AVKit
 import ImageIO
 
 class PhotoPickerManager {
-    static let sharedInstance = PhotoPickerManager()
+    static let shared = PhotoPickerManager()
     private init() { }
     
     private var fileModel: FilePickerModel? = nil

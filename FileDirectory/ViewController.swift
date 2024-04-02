@@ -19,14 +19,24 @@ class ViewController: UIViewController {
 
 
     @IBAction func onClickPhoto(_ sender: Any) {
-        PhotoPickerManager.sharedInstance.showPhotoPicker(vc: self)
+        PhotoPickerManager.shared.showPhotoPicker(vc: self)
+    }
+    @IBAction func onClickFile(_ sender: Any) {
+        FileService.shared.createDirectory("내 문서")
+        FileService.shared.setFile("test.txt")
+        let appendData = FileService.shared.stringToData("TEXT ")
+        FileService.shared.append(data: appendData)
+        if let readData = FileService.shared.read(),
+           let readString = String(data: readData, encoding: .utf8) {
+            Log.tag(.STORAGE).d(readString)
+        }
     }
 }
 
 // MARK: - PHPickerViewControllerDelegate
 extension ViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        PhotoPickerManager.sharedInstance.picker(picker, didFinishPicking: results, view: centerView, vc: self)
+        PhotoPickerManager.shared.picker(picker, didFinishPicking: results, view: centerView, vc: self)
     }
 }
 

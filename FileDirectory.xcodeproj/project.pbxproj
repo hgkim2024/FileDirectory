@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52937AC82BBB8A6900CB0F53 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937AC72BBB8A6900CB0F53 /* Log.swift */; };
+		52937ACB2BBBA46D00CB0F53 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937ACA2BBBA46D00CB0F53 /* FileService.swift */; };
 		52D367542BB52B4500F0DD59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367532BB52B4500F0DD59 /* AppDelegate.swift */; };
 		52D367562BB52B4500F0DD59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367552BB52B4500F0DD59 /* SceneDelegate.swift */; };
 		52D367582BB52B4500F0DD59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367572BB52B4500F0DD59 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		52937AC72BBB8A6900CB0F53 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		52937ACA2BBBA46D00CB0F53 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		52D367502BB52B4500F0DD59 /* FileDirectory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileDirectory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D367532BB52B4500F0DD59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D367552BB52B4500F0DD59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
+		52937AC92BBBA0FF00CB0F53 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				52937ACA2BBBA46D00CB0F53 /* FileService.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
 		52D367472BB52B4500F0DD59 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +80,7 @@
 		52D367522BB52B4500F0DD59 /* FileDirectory */ = {
 			isa = PBXGroup;
 			children = (
+				52937AC92BBBA0FF00CB0F53 /* File */,
 				52937AC62BBB8A6300CB0F53 /* Log */,
 				52D367672BB52D1200F0DD59 /* FilePicker */,
 				52D367532BB52B4500F0DD59 /* AppDelegate.swift */,
@@ -164,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D367582BB52B4500F0DD59 /* ViewController.swift in Sources */,
+				52937ACB2BBBA46D00CB0F53 /* FileService.swift in Sources */,
 				52D367542BB52B4500F0DD59 /* AppDelegate.swift in Sources */,
 				52937AC82BBB8A6900CB0F53 /* Log.swift in Sources */,
 				52D3676B2BB53DCD00F0DD59 /* FilePickerModel.swift in Sources */,
