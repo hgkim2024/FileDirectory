@@ -16,14 +16,7 @@ class PhotoPickerManager {
     static let sharedInstance = PhotoPickerManager()
     private init() { }
     
-    private var fileModel: FileModel? = nil {
-        didSet {
-            if let fileModel = self.fileModel {
-                NSLog("fileModel - path: \(fileModel.path)")
-                NSLog("fileModel - data size: \(fileModel.size)")
-            }
-        }
-    }
+    private var fileModel: FileModel? = nil
     var looper : AVPlayerLooper? = nil
     
     private func photoAuth(_ completion: (() -> Void)? = nil) {
@@ -78,16 +71,32 @@ class PhotoPickerManager {
         }
         
         view.subviews.forEach { $0.removeFromSuperview() }
+        Log.tag(.MEDIA).d("media: \(asset.mediaType), source: \(asset.sourceType)")
         
         let prov = result.itemProvider
-        if (prov.hasItemConformingToTypeIdentifier(UTType.image.identifier)) {
-            FileModel.imageToFileModel(asset, prov, setFileModel)
-            settingImage(itemProvider: prov, view: view)
+        
+        for id in prov.registeredTypeIdentifiers {
+            Log.tag(.MEDIA).tag(.ID).d(id)
+        }
+        
+        if (prov.hasItemConformingToTypeIdentifier(UTType.gif.identifier)) {
+            // TODO: - GIF 개발
+//            settingVideo(itemProvider: prov, view: view, vc: vc, fileModel: nil)
+        } else if (prov.hasItemConformingToTypeIdentifier(UTType.image.identifier)) {
+            FileModel.imageToFileModel(asset, prov) { [weak self] fileModel in
+                guard let `self` = self else { return }
+                self.setFileModel(fileModel: fileModel)
+                self.settingImage(itemProvider: prov, view: view)
+            }
+            
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.appleProtectedMPEG4Video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier)) {
-            FileModel.videoToFileModel(asset, setFileModel)
-            settingVideo(itemProvider: prov, view: view, vc: vc)
+            FileModel.videoToFileModel(asset) { [weak self] fileModel in
+                guard let `self` = self else { return }
+                self.setFileModel(fileModel: fileModel)
+                self.settingVideo(itemProvider: prov, view: view, vc: vc)
+            }
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.livePhoto.identifier)) {
             // : Live Photo
         } else {
@@ -126,30 +135,15 @@ class PhotoPickerManager {
         itemProvider.loadFileRepresentation(forTypeIdentifier: movie) { url, err in
             if let url = url {
                 DispatchQueue.main.sync {
-                    // TODO: - GIF 조건 문이 잘못됨 - File Path 로 구분하는 것이 제일 좋은 거 같다.
-                    let loopType = "com.apple.private.auto-loop-gif"
-                    if itemProvider.hasItemConformingToTypeIdentifier(loopType) {
-                        let av = AVPlayerViewController()
-                        let player = AVQueuePlayer(url:url)
-                        av.player = player
-                        vc.addChild(av)
-                        self.looper = AVPlayerLooper(player: player, templateItem: player.currentItem!)
-                        av.view.frame = view.bounds
-                        av.view.backgroundColor = view.backgroundColor
-                        view.addSubview(av.view)
-                        av.didMove(toParent: vc)
-                        player.play()
-                    } else {
-                        let av = AVPlayerViewController()
-                        let player = AVPlayer(url:url)
-                        av.player = player
-                        vc.addChild(av)
-                        av.view.frame = view.bounds
-                        av.view.backgroundColor = view.backgroundColor
-                        view.addSubview(av.view)
-                        av.didMove(toParent: vc)
-                        player.play()
-                    }
+                    let av = AVPlayerViewController()
+                    let player = AVPlayer(url:url)
+                    av.player = player
+                    vc.addChild(av)
+                    av.view.frame = view.bounds
+                    av.view.backgroundColor = view.backgroundColor
+                    view.addSubview(av.view)
+                    av.didMove(toParent: vc)
+                    player.play()
                 }
             }
         }

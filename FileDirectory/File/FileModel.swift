@@ -21,6 +21,23 @@ struct FileModel {
     }
 }
 
+enum FileExt: String {
+    case GIF
+    case IMAGE
+    case NONE
+    
+    static func fromExt(ext: String) -> FileExt {
+        switch ext.lowercased() {
+        case ".gif":
+            return .GIF
+        case ".png", ".jpeg", ".jpg":
+            return .IMAGE
+        default:
+            return .NONE
+        }
+    }
+}
+
 // MARK: - Image
 extension FileModel {
     static func imageToFileModel(_ asset: PHAsset, _ itemProvider: NSItemProvider, _ completion: @escaping (FileModel?) -> Void) {
@@ -40,8 +57,12 @@ extension FileModel {
                     completion(nil)
                     return
                 }
+                let model = FileModel(data: data, path: filePath)
+                Log.tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
+                Log.tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
+                Log.tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
                 
-                completion(FileModel(data: data, path: filePath))
+                completion(model)
             })
         })
     }
@@ -60,7 +81,12 @@ extension FileModel {
                 return
             }
             
-            completion(FileModel(data: data, path: avAsset.url))
+            let model = FileModel(data: data, path: avAsset.url)
+            Log.tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
+            Log.tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
+            Log.tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
+            
+            completion(model)
         }
     }
 }
@@ -82,5 +108,15 @@ extension FileModel {
         }
         floatSize = floatSize / 1024
         return String(format: "%.1f GB", floatSize)
+    }
+    
+    var ext: FileExt {
+        let path = path.absoluteString
+        if let lastCommaIdx = path.lastIndex(of: ".") {
+            let ext = String(path[lastCommaIdx...])
+            return FileExt.fromExt(ext: ext)
+        }
+        
+        return .NONE
     }
 }
