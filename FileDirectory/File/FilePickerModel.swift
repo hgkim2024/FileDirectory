@@ -10,7 +10,7 @@ import PhotosUI
 
 
 // MARK: - FileModel
-struct FileModel {
+struct FilePickerModel {
     
     let data: Data
     let path: URL
@@ -39,8 +39,8 @@ enum FileExt: String {
 }
 
 // MARK: - Image
-extension FileModel {
-    static func imageToFileModel(_ asset: PHAsset, _ itemProvider: NSItemProvider, _ completion: @escaping (FileModel?) -> Void) {
+extension FilePickerModel {
+    static func imageToFileModel(_ asset: PHAsset, _ itemProvider: NSItemProvider, _ completion: @escaping (FilePickerModel?) -> Void) {
         let option = PHImageRequestOptions()
         option.isNetworkAccessAllowed = true
         option.isSynchronous = true
@@ -57,7 +57,7 @@ extension FileModel {
                     completion(nil)
                     return
                 }
-                let model = FileModel(data: data, path: filePath)
+                let model = FilePickerModel(data: data, path: filePath)
                 Log.tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
                 Log.tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
                 Log.tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
@@ -69,8 +69,8 @@ extension FileModel {
 }
 
 // MARK: - Video
-extension FileModel {
-    static func videoToFileModel(_ asset: PHAsset, _ completion: @escaping (FileModel?) -> Void) {
+extension FilePickerModel {
+    static func videoToFileModel(_ asset: PHAsset, _ completion: @escaping (FilePickerModel?) -> Void) {
         let option = PHVideoRequestOptions()
         option.isNetworkAccessAllowed = true
         option.deliveryMode = .highQualityFormat
@@ -81,7 +81,7 @@ extension FileModel {
                 return
             }
             
-            let model = FileModel(data: data, path: avAsset.url)
+            let model = FilePickerModel(data: data, path: avAsset.url)
             Log.tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
             Log.tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
             Log.tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
@@ -92,7 +92,7 @@ extension FileModel {
 }
 
 // MARK: - property
-extension FileModel {
+extension FilePickerModel {
     var size: String {
         let fileSize = data.count
         if fileSize < 1023 {

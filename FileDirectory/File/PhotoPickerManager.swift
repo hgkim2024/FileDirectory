@@ -16,7 +16,7 @@ class PhotoPickerManager {
     static let sharedInstance = PhotoPickerManager()
     private init() { }
     
-    private var fileModel: FileModel? = nil
+    private var fileModel: FilePickerModel? = nil
     var looper : AVPlayerLooper? = nil
     
     private func photoAuth(_ completion: (() -> Void)? = nil) {
@@ -83,7 +83,7 @@ class PhotoPickerManager {
             // TODO: - GIF 개발
 //            settingVideo(itemProvider: prov, view: view, vc: vc, fileModel: nil)
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.image.identifier)) {
-            FileModel.imageToFileModel(asset, prov) { [weak self] fileModel in
+            FilePickerModel.imageToFileModel(asset, prov) { [weak self] fileModel in
                 guard let `self` = self else { return }
                 self.setFileModel(fileModel: fileModel)
                 self.settingImage(itemProvider: prov, view: view)
@@ -92,7 +92,7 @@ class PhotoPickerManager {
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.appleProtectedMPEG4Video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier)) {
-            FileModel.videoToFileModel(asset) { [weak self] fileModel in
+            FilePickerModel.videoToFileModel(asset) { [weak self] fileModel in
                 guard let `self` = self else { return }
                 self.setFileModel(fileModel: fileModel)
                 self.settingVideo(itemProvider: prov, view: view, vc: vc)
@@ -108,7 +108,7 @@ class PhotoPickerManager {
         }
     }
     
-    private func setFileModel(fileModel: FileModel?) {
+    private func setFileModel(fileModel: FilePickerModel?) {
         self.fileModel = fileModel
     }
     
