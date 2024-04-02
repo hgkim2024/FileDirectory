@@ -21,6 +21,7 @@ class FileService {
         parentDirectoryPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
+    // TODO: - 다른 디렉토리에 저장하면 어떻게 되는지 체크 - ex) .documentDirectory 이외의 디렉토리
     func setParentDirectory(url: URL) {
         parentDirectoryPath = url
     }
