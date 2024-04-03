@@ -27,7 +27,7 @@ class FileService {
     }
     
     func createDirectory(_ directoryName: String) {
-        // TODO: - URL 로 저장하는 로직 추가할 것
+        // TODO: - URL 로 저장하는 로직 가능한지 체크
 //        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
 //        return [documentsDirectoryPath URLByAppendingPathComponent:[targetPath lastPathComponent]];
         
