@@ -55,15 +55,14 @@ class FileService {
         filePath = directoryPath.appendingPathComponent(fileName)
     }
     
+    func setFile(_ path: URL) {
+        filePath = path
+    }
+    
     // : Overwrite file data
     func write(data: Data?) {
         guard let data = data else {
             Log.tag(.STORAGE).d("data is null")
-            return
-        }
-        
-        guard directoryPath != nil else {
-            Log.tag(.STORAGE).d("Directory Path is null")
             return
         }
         
@@ -83,11 +82,6 @@ class FileService {
     func append(data: Data?) {
         guard let data = data else {
             Log.tag(.STORAGE).d("data is null")
-            return
-        }
-        
-        guard directoryPath != nil else {
-            Log.tag(.STORAGE).d("Directory Path is null")
             return
         }
         
@@ -115,11 +109,6 @@ class FileService {
     func read(_ fileName: String? = nil) -> Data? {
         if let fileName = fileName {
             setFile(fileName)
-        }
-        
-        guard directoryPath != nil else {
-            Log.tag(.STORAGE).d("Directory Path is null")
-            return nil
         }
         
         guard let filePath = filePath else {

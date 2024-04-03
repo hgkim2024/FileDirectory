@@ -59,7 +59,7 @@ extension PhotoPickerModel {
                 }
                 let model = PhotoPickerModel(data: data, path: filePath)
                 Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
-                Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
+                Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.SIZE).d("size: \(model.data.size)")
                 Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
                 
                 completion(model)
@@ -83,7 +83,7 @@ extension PhotoPickerModel {
             
             let model = PhotoPickerModel(data: data, path: avAsset.url)
             Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
-            Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
+            Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.SIZE).d("size: \(model.data.size)")
             Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
             
             completion(model)
@@ -93,8 +93,20 @@ extension PhotoPickerModel {
 
 // MARK: - size property
 extension PhotoPickerModel {
+    var ext: FileExt {
+        let path = path.absoluteString
+        if let lastCommaIdx = path.lastIndex(of: ".") {
+            let ext = String(path[lastCommaIdx...])
+            return FileExt.fromExt(ext: ext)
+        }
+        
+        return .NONE
+    }
+}
+
+extension Data {
     var size: String {
-        let fileSize = data.count
+        let fileSize = count
         if fileSize < 1023 {
             return String(format: "%lu bytes", CUnsignedLong(fileSize))
         }
@@ -108,15 +120,5 @@ extension PhotoPickerModel {
         }
         floatSize = floatSize / 1024
         return String(format: "%.1f GB", floatSize)
-    }
-    
-    var ext: FileExt {
-        let path = path.absoluteString
-        if let lastCommaIdx = path.lastIndex(of: ".") {
-            let ext = String(path[lastCommaIdx...])
-            return FileExt.fromExt(ext: ext)
-        }
-        
-        return .NONE
     }
 }

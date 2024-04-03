@@ -15,6 +15,7 @@ class DocumentPickerManager {
     
     
     func showDocumentPicker(vc: UIViewController) {
+        Log.tag(.DOCUMENT).tag(.PICKER).d("")
         let documentPicker: UIDocumentPickerViewController
 
         if #available(iOS 14.0, *) {
@@ -30,8 +31,15 @@ class DocumentPickerManager {
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard let fileUrl = urls.first else { return }
+        guard let fileUrl = urls.first else {
+            Log.tag(.DOCUMENT).tag(.PICKER).tag(.FAIL).e("not found file url")
+            return
+        }
+        Log.tag(.DOCUMENT).tag(.PICKER).d("fileUrl: \(fileUrl.path)")
+        FileService.shared.setFile(fileUrl)
         
+        guard let data = FileService.shared.read() else { return }
+        Log.tag(.DOCUMENT).tag(.PICKER).d("data size: \(data.size)")
     }
 }
 
