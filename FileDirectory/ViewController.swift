@@ -36,6 +36,20 @@ class ViewController: UIViewController {
     @IBAction func onClickDocumentPicker(_ sender: Any) {
         DocumentPickerManager.shared.showDocumentPicker(vc: self)
     }
+    @IBAction func onClickShare(_ sender: Any) {
+        let textToShare: String = "공유 텍스트"
+        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+//        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.assignToContact]
+
+        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+            if success {
+                
+           }  else  {
+            
+           }
+        }
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - PHPickerViewControllerDelegate

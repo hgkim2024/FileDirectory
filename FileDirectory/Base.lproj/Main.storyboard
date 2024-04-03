@@ -30,6 +30,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXW-g4-sM8">
+                                <rect key="frame" x="143" y="610" width="106" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Create File"/>
+                                <connections>
+                                    <action selector="onClickCreateFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bY1-Ci-BHm"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZS-nu-0BX">
                                 <rect key="frame" x="96" y="676" width="201" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,13 +48,13 @@
                                     <action selector="onClickDocumentPicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o3o-gG-6JY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXW-g4-sM8">
-                                <rect key="frame" x="143" y="610" width="106" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Syg-VF-G1P">
+                                <rect key="frame" x="162" y="546" width="68" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Create File"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Share"/>
                                 <connections>
-                                    <action selector="onClickCreateFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bY1-Ci-BHm"/>
+                                    <action selector="onClickShare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DjD-IZ-cjk"/>
                                 </connections>
                             </button>
                         </subviews>
