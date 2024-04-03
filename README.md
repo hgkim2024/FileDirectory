@@ -15,11 +15,10 @@
 <br>
 
 ## 결론
-- FD 메세지를 통해 파일을 다운로드하여 파일을 사진앱, Device Storage, App Storage 에 저장 할 수 있다.
-- **다른앱에 저장된 파일은 PTT앱에서 접근할 수 없다.**
-    - ex) 사진앱에 저장된 파일을 PTT 앱에서 접근할 수 없다.
-- **파일을 Device Storage 나 App Storage 저장하면 PPT 앱에서 접근 가능하다.**
-
+- 파일을 단말에 저장 시 사진앱, Device Storage, App Storage 에 저장 할 수 있다.
+- **사진앱에 저장된 파일은 사진앱이 아닌 앱에서 File Path로 접근할 수 없다.**
+- 사진앱의 미디어 파일을 접근하려면 Photo Picker 를 통하여 접근 할 수 있다.
+- **파일을 Device Storage 나 App Storage 저장하면 File Path 를 통해 앱에서 접근 가능하다.**
 <br>
 
 ex) Photo Picker 의 경우 파일을 가져올 때마다 파일 경로가 다르다.
