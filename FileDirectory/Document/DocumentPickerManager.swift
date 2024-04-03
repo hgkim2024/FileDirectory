@@ -28,6 +28,11 @@ class DocumentPickerManager {
        documentPicker.modalPresentationStyle = .fullScreen
        vc.present(documentPicker, animated: true, completion: nil)
     }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let fileUrl = urls.first else { return }
+        
+    }
 }
 
 // MARK: - contentTypes

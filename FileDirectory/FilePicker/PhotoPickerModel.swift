@@ -10,7 +10,7 @@ import PhotosUI
 
 
 // MARK: - FileModel
-struct FilePickerModel {
+struct PhotoPickerModel {
     
     let data: Data
     let path: URL
@@ -39,8 +39,8 @@ enum FileExt: String {
 }
 
 // MARK: - Image
-extension FilePickerModel {
-    static func imageToFileModel(_ asset: PHAsset, _ itemProvider: NSItemProvider, _ completion: @escaping (FilePickerModel?) -> Void) {
+extension PhotoPickerModel {
+    static func imageToFileModel(_ asset: PHAsset, _ itemProvider: NSItemProvider, _ completion: @escaping (PhotoPickerModel?) -> Void) {
         let option = PHImageRequestOptions()
         option.isNetworkAccessAllowed = true
         option.isSynchronous = true
@@ -57,10 +57,10 @@ extension FilePickerModel {
                     completion(nil)
                     return
                 }
-                let model = FilePickerModel(data: data, path: filePath)
-                Log.tag(.PICKER).tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
-                Log.tag(.PICKER).tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
-                Log.tag(.PICKER).tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
+                let model = PhotoPickerModel(data: data, path: filePath)
+                Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.PATH).d("path: \(model.path)")
+                Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.SIZE).d("size: \(model.size)")
+                Log.tag(.PHOTO).tag(.PICKER).tag(.PHOTO).tag(.EXT).d("ext: \(model.ext)")
                 
                 completion(model)
             })
@@ -69,8 +69,8 @@ extension FilePickerModel {
 }
 
 // MARK: - Video
-extension FilePickerModel {
-    static func videoToFileModel(_ asset: PHAsset, _ completion: @escaping (FilePickerModel?) -> Void) {
+extension PhotoPickerModel {
+    static func videoToFileModel(_ asset: PHAsset, _ completion: @escaping (PhotoPickerModel?) -> Void) {
         let option = PHVideoRequestOptions()
         option.isNetworkAccessAllowed = true
         option.deliveryMode = .highQualityFormat
@@ -81,18 +81,18 @@ extension FilePickerModel {
                 return
             }
             
-            let model = FilePickerModel(data: data, path: avAsset.url)
-            Log.tag(.PICKER).tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
-            Log.tag(.PICKER).tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
-            Log.tag(.PICKER).tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
+            let model = PhotoPickerModel(data: data, path: avAsset.url)
+            Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.PATH).d("path: \(model.path)")
+            Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.SIZE).d("size: \(model.size)")
+            Log.tag(.PHOTO).tag(.PICKER).tag(.VIDEO).tag(.EXT).d("ext: \(model.ext)")
             
             completion(model)
         }
     }
 }
 
-// MARK: - property
-extension FilePickerModel {
+// MARK: - size property
+extension PhotoPickerModel {
     var size: String {
         let fileSize = data.count
         if fileSize < 1023 {

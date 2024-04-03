@@ -47,5 +47,7 @@ extension ViewController: PHPickerViewControllerDelegate {
 
 // MARK: - UIDocumentPickerDelegate
 extension ViewController: UIDocumentPickerDelegate {
-    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        DocumentPickerManager.shared.documentPicker(controller, didPickDocumentsAt: urls)
+    }
 }

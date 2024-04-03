@@ -16,7 +16,7 @@ class PhotoPickerManager {
     static let shared = PhotoPickerManager()
     private init() { }
     
-    private var fileModel: FilePickerModel? = nil
+    private var fileModel: PhotoPickerModel? = nil
     var looper : AVPlayerLooper? = nil
     
     private func photoAuth(_ completion: (() -> Void)? = nil) {
@@ -71,19 +71,19 @@ class PhotoPickerManager {
         }
         
         view.subviews.forEach { $0.removeFromSuperview() }
-        Log.tag(.PICKER).tag(.MEDIA).d("media: \(asset.mediaType), source: \(asset.sourceType)")
+        Log.tag(.PHOTO).tag(.PICKER).tag(.MEDIA).d("media: \(asset.mediaType), source: \(asset.sourceType)")
         
         let prov = result.itemProvider
         
         for id in prov.registeredTypeIdentifiers {
-            Log.tag(.PICKER).tag(.MEDIA).tag(.ID).d(id)
+            Log.tag(.PHOTO).tag(.PICKER).tag(.MEDIA).tag(.ID).d(id)
         }
         
         if (prov.hasItemConformingToTypeIdentifier(UTType.gif.identifier)) {
             // TODO: - GIF 개발
 //            settingVideo(itemProvider: prov, view: view, vc: vc, fileModel: nil)
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.image.identifier)) {
-            FilePickerModel.imageToFileModel(asset, prov) { [weak self] fileModel in
+            PhotoPickerModel.imageToFileModel(asset, prov) { [weak self] fileModel in
                 guard let `self` = self else { return }
                 self.setFileModel(fileModel: fileModel)
                 self.settingImage(itemProvider: prov, view: view)
@@ -92,7 +92,7 @@ class PhotoPickerManager {
         } else if (prov.hasItemConformingToTypeIdentifier(UTType.video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.appleProtectedMPEG4Video.identifier) ||
                    prov.hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier)) {
-            FilePickerModel.videoToFileModel(asset) { [weak self] fileModel in
+            PhotoPickerModel.videoToFileModel(asset) { [weak self] fileModel in
                 guard let `self` = self else { return }
                 self.setFileModel(fileModel: fileModel)
                 self.settingVideo(itemProvider: prov, view: view, vc: vc)
@@ -108,7 +108,7 @@ class PhotoPickerManager {
         }
     }
     
-    private func setFileModel(fileModel: FilePickerModel?) {
+    private func setFileModel(fileModel: PhotoPickerModel?) {
         self.fileModel = fileModel
     }
     
