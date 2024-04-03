@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
     
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onClickDocumentPicker(_ sender: Any) {
-        // TODO: - Document Picker
+        DocumentPickerManager.shared.showDocumentPicker(vc: self)
     }
 }
 
@@ -44,3 +45,7 @@ extension ViewController: PHPickerViewControllerDelegate {
     }
 }
 
+// MARK: - UIDocumentPickerDelegate
+extension ViewController: UIDocumentPickerDelegate {
+    
+}

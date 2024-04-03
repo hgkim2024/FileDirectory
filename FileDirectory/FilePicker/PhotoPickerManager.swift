@@ -45,7 +45,7 @@ class PhotoPickerManager {
         })
     }
     
-    func showPhotoPicker(vc: ViewController) {
+    func showPhotoPicker(vc: UIViewController) {
         photoAuth() {
             var config = PHPickerConfiguration(photoLibrary: .shared())
             config.preferredAssetRepresentationMode = .current
@@ -55,13 +55,13 @@ class PhotoPickerManager {
 //            config.filter = newFilter
             
             let picker = PHPickerViewController(configuration: config)
-            picker.delegate = vc
+            picker.delegate = vc as? PHPickerViewControllerDelegate
             
             vc.present(picker, animated: true)
         }
     }
     
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView, vc: ViewController) {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult], view: UIView, vc: UIViewController) {
         guard let result = results.first,
             let identifier = result.assetIdentifier,
               let fetchResult = getFetchResult(identifier: identifier),
@@ -129,7 +129,7 @@ class PhotoPickerManager {
         }
     }
     
-    private func settingVideo(itemProvider: NSItemProvider, view: UIView, vc: ViewController) {
+    private func settingVideo(itemProvider: NSItemProvider, view: UIView, vc: UIViewController) {
         let movie = UTType.movie.identifier
         
         itemProvider.loadFileRepresentation(forTypeIdentifier: movie) { url, err in
