@@ -17,11 +17,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
-    @IBAction func onClickPhoto(_ sender: Any) {
+    @IBAction func onClickPhotoPicker(_ sender: Any) {
         PhotoPickerManager.shared.showPhotoPicker(vc: self)
     }
-    @IBAction func onClickFile(_ sender: Any) {
+
+    @IBAction func onClickCreateFile(_ sender: Any) {
         FileService.shared.createDirectory("내 문서")
         FileService.shared.setFile("test.txt")
         let appendData = FileService.shared.stringToData("TEXT ")
@@ -30,6 +30,10 @@ class ViewController: UIViewController {
            let readString = String(data: readData, encoding: .utf8) {
             Log.tag(.STORAGE).d(readString)
         }
+    }
+    
+    @IBAction func onClickDocumentPicker(_ sender: Any) {
+        // TODO: - Document Picker
     }
 }
 
