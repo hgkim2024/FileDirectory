@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 
         activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
             if success {
-                Log.tag(.SHARE).tag(.SUCCESS).d("items size: \(String(describing: items?.count))")
+                Log.tag(.SHARE).tag(.SUCCESS).d("items size: \(String(describing: items))")
             }  else  {
                 Log.tag(.SHARE).tag(.FAIL).d(error?.localizedDescription ?? "")
             }

@@ -18,6 +18,7 @@ public enum Tag: Int {
     case PICKER
     case MEDIA
     case VIDEO
+    case TEXT
     case GIF
     case LIVE
     
