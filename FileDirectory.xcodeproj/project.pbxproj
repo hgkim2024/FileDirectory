@@ -10,6 +10,9 @@
 		52937AC82BBB8A6900CB0F53 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937AC72BBB8A6900CB0F53 /* Log.swift */; };
 		52937ACB2BBBA46D00CB0F53 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937ACA2BBBA46D00CB0F53 /* FileService.swift */; };
 		52937ACE2BBD214000CB0F53 /* DocumentPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937ACD2BBD214000CB0F53 /* DocumentPickerManager.swift */; };
+		52937AD62BBE815F00CB0F53 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52937AD52BBE815F00CB0F53 /* ShareViewController.swift */; };
+		52937AD92BBE815F00CB0F53 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52937AD72BBE815F00CB0F53 /* MainInterface.storyboard */; };
+		52937ADD2BBE815F00CB0F53 /* FileShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52937AD32BBE815F00CB0F53 /* FileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52D367542BB52B4500F0DD59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367532BB52B4500F0DD59 /* AppDelegate.swift */; };
 		52D367562BB52B4500F0DD59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367552BB52B4500F0DD59 /* SceneDelegate.swift */; };
 		52D367582BB52B4500F0DD59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D367572BB52B4500F0DD59 /* ViewController.swift */; };
@@ -20,10 +23,38 @@
 		52D3676B2BB53DCD00F0DD59 /* PhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3676A2BB53DCD00F0DD59 /* PhotoPickerModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		52937ADB2BBE815F00CB0F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52D367482BB52B4500F0DD59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52937AD22BBE815F00CB0F53;
+			remoteInfo = FileShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		52937AE12BBE815F00CB0F53 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				52937ADD2BBE815F00CB0F53 /* FileShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		52937AC72BBB8A6900CB0F53 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		52937ACA2BBBA46D00CB0F53 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		52937ACD2BBD214000CB0F53 /* DocumentPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerManager.swift; sourceTree = "<group>"; };
+		52937AD32BBE815F00CB0F53 /* FileShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FileShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		52937AD52BBE815F00CB0F53 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		52937AD82BBE815F00CB0F53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		52937ADA2BBE815F00CB0F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D367502BB52B4500F0DD59 /* FileDirectory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileDirectory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D367532BB52B4500F0DD59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D367552BB52B4500F0DD59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		52937AD02BBE815F00CB0F53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D3674D2BB52B4500F0DD59 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,10 +109,21 @@
 			path = Document;
 			sourceTree = "<group>";
 		};
+		52937AD42BBE815F00CB0F53 /* FileShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				52937AD52BBE815F00CB0F53 /* ShareViewController.swift */,
+				52937AD72BBE815F00CB0F53 /* MainInterface.storyboard */,
+				52937ADA2BBE815F00CB0F53 /* Info.plist */,
+			);
+			path = FileShareExtension;
+			sourceTree = "<group>";
+		};
 		52D367472BB52B4500F0DD59 = {
 			isa = PBXGroup;
 			children = (
 				52D367522BB52B4500F0DD59 /* FileDirectory */,
+				52937AD42BBE815F00CB0F53 /* FileShareExtension */,
 				52D367512BB52B4500F0DD59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				52D367502BB52B4500F0DD59 /* FileDirectory.app */,
+				52937AD32BBE815F00CB0F53 /* FileShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,9 +140,9 @@
 		52D367522BB52B4500F0DD59 /* FileDirectory */ = {
 			isa = PBXGroup;
 			children = (
+				52937AC62BBB8A6300CB0F53 /* Log */,
 				52937ACC2BBD211800CB0F53 /* Document */,
 				52937AC92BBBA0FF00CB0F53 /* File */,
-				52937AC62BBB8A6300CB0F53 /* Log */,
 				52D367672BB52D1200F0DD59 /* PhotoPicker */,
 				52D367532BB52B4500F0DD59 /* AppDelegate.swift */,
 				52D367552BB52B4500F0DD59 /* SceneDelegate.swift */,
@@ -117,6 +167,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		52937AD22BBE815F00CB0F53 /* FileShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52937ADE2BBE815F00CB0F53 /* Build configuration list for PBXNativeTarget "FileShareExtension" */;
+			buildPhases = (
+				52937ACF2BBE815F00CB0F53 /* Sources */,
+				52937AD02BBE815F00CB0F53 /* Frameworks */,
+				52937AD12BBE815F00CB0F53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FileShareExtension;
+			productName = FileShareExtension;
+			productReference = 52937AD32BBE815F00CB0F53 /* FileShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		52D3674F2BB52B4500F0DD59 /* FileDirectory */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52D367642BB52B4700F0DD59 /* Build configuration list for PBXNativeTarget "FileDirectory" */;
@@ -124,10 +191,12 @@
 				52D3674C2BB52B4500F0DD59 /* Sources */,
 				52D3674D2BB52B4500F0DD59 /* Frameworks */,
 				52D3674E2BB52B4500F0DD59 /* Resources */,
+				52937AE12BBE815F00CB0F53 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				52937ADC2BBE815F00CB0F53 /* PBXTargetDependency */,
 			);
 			name = FileDirectory;
 			productName = FileDirectory;
@@ -144,6 +213,9 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					52937AD22BBE815F00CB0F53 = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					52D3674F2BB52B4500F0DD59 = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -163,11 +235,20 @@
 			projectRoot = "";
 			targets = (
 				52D3674F2BB52B4500F0DD59 /* FileDirectory */,
+				52937AD22BBE815F00CB0F53 /* FileShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		52937AD12BBE815F00CB0F53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52937AD92BBE815F00CB0F53 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D3674E2BB52B4500F0DD59 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +262,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		52937ACF2BBE815F00CB0F53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52937AD62BBE815F00CB0F53 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D3674C2BB52B4500F0DD59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,7 +287,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		52937ADC2BBE815F00CB0F53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52937AD22BBE815F00CB0F53 /* FileShareExtension */;
+			targetProxy = 52937ADB2BBE815F00CB0F53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		52937AD72BBE815F00CB0F53 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52937AD82BBE815F00CB0F53 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		52D367592BB52B4500F0DD59 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -218,6 +323,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		52937ADF2BBE815F00CB0F53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W2TQ6HFG67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FileShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FileShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hgkim2024.FileDirectory.FileShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52937AE02BBE815F00CB0F53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W2TQ6HFG67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FileShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FileShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hgkim2024.FileDirectory.FileShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		52D367622BB52B4700F0DD59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,6 +495,7 @@
 		52D367652BB52B4700F0DD59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -368,6 +524,7 @@
 		52D367662BB52B4700F0DD59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +553,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		52937ADE2BBE815F00CB0F53 /* Build configuration list for PBXNativeTarget "FileShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52937ADF2BBE815F00CB0F53 /* Debug */,
+				52937AE02BBE815F00CB0F53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		52D3674B2BB52B4500F0DD59 /* Build configuration list for PBXProject "FileDirectory" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
