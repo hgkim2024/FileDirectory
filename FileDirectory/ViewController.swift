@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import UniformTypeIdentifiers
+import common
 
 class ViewController: UIViewController {
     

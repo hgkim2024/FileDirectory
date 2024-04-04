@@ -7,6 +7,7 @@
 
 import Foundation
 import PhotosUI
+import common
 
 
 // MARK: - FileModel

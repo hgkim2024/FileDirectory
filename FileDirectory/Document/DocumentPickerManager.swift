@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import UniformTypeIdentifiers
+import common
 
 class DocumentPickerManager {
     static let shared = DocumentPickerManager()

@@ -8,6 +8,7 @@
 import UIKit
 import Social
 import MobileCoreServices
+import common
 
 class ShareViewController: SLComposeServiceViewController {
 
@@ -17,14 +18,12 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func didSelectPost() {
-        NSLog("[path] didSelectPost()")
+        Log.tag(.SHARE).tag(.RECEIVED).d("")
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-    
         if let item = extensionContext?.inputItems.first as? NSExtensionItem,
            let itemProvider = item.attachments?.first {
-            NSLog("[path] first")
+            Log.tag(.SHARE).tag(.RECEIVED).d("first")
         }
-//        NSLog("[path] path - \(url.path)")
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }

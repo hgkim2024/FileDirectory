@@ -11,6 +11,7 @@ import PhotosUI
 import UIKit
 import AVKit
 import ImageIO
+import common
 
 class PhotoPickerManager {
     static let shared = PhotoPickerManager()

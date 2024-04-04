@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - Log Tag
-enum Tag: Int {
+public enum Tag: Int {
     // MARK: - 상위 태그
     case APP
     case STORAGE
@@ -29,6 +29,8 @@ enum Tag: Int {
     case EXT
     case SUCCESS
     case FAIL
+    case SEND
+    case RECEIVED
     
     // MARK: - NONE 태그
     case NONE
@@ -50,7 +52,7 @@ enum LogLevel: String {
 }
 
 // MARK: - Log
-class Log {
+public class Log {
     
     static private var logLevel = LogLevel.TRACE
     static private var logTagMap = NSMutableDictionary() // : [String: [Tag]]()
@@ -63,7 +65,7 @@ class Log {
         return "\(file)_\(line)_\(function)"
     }
     
-    static func tag(_ tag: Tag, file: String = #file, line: Int = #line, function: String = #function) -> Log.Type {
+    public static func tag(_ tag: Tag, file: String = #file, line: Int = #line, function: String = #function) -> Log.Type {
         let key = getKey(file: file, line: line, function: function)
         setTags([tag], key: key)
         
@@ -71,7 +73,7 @@ class Log {
     }
     
     
-    static func tag(_ tags: [Tag], file: String = #file, line: Int = #line, function: String = #function) -> Log.Type {
+    public static func tag(_ tags: [Tag], file: String = #file, line: Int = #line, function: String = #function) -> Log.Type {
         let key = getKey(file: file, line: line, function: function)
         setTags(tags, key: key)
         
@@ -119,27 +121,27 @@ class Log {
     }
     
     // trace
-    static func t(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
+    public static func t(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
         printLog(format, logLevel: LogLevel.TRACE, file: file, line: line, function: function)
     }
     
     // debug
-    static func d(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
+    public static func d(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
         printLog(format, logLevel: LogLevel.DEBUG, file: file, line: line, function: function)
     }
     
     // warning
-    static func w(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
+    public static func w(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
         printLog(format, logLevel: LogLevel.WARNING, file: file, line: line, function: function)
     }
     
     // error
-    static func e(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
+    public static func e(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
         printLog(format, logLevel: LogLevel.ERROR, file: file, line: line, function: function)
     }
     
     // fatal
-    static func f(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
+    public static func f(_ format: String, file: String = #file, line: Int = #line, function: String = #function) {
         printLog(format, logLevel: LogLevel.FATAL, file: file, line: line, function: function)
     }
     
