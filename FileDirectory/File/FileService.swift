@@ -14,7 +14,7 @@ class FileService {
     let fileManager: FileManager
     private var parentDirectoryPath: URL
     private var directoryPath: URL?
-    private var filePath: URL?
+    var fileUrl: URL?
     
     private init() {
         fileManager = FileManager.default
@@ -52,11 +52,7 @@ class FileService {
             return
         }
         
-        filePath = directoryPath.appendingPathComponent(fileName)
-    }
-    
-    func setFile(_ path: URL) {
-        filePath = path
+        fileUrl = directoryPath.appendingPathComponent(fileName)
     }
     
     // : Overwrite file data
@@ -66,7 +62,7 @@ class FileService {
             return
         }
         
-        guard let filePath = filePath else {
+        guard let filePath = fileUrl else {
             Log.tag(.STORAGE).d("File Path is null")
             return
         }
@@ -85,7 +81,7 @@ class FileService {
             return
         }
         
-        guard let filePath = filePath else {
+        guard let filePath = fileUrl else {
             Log.tag(.STORAGE).d("File Path is null")
             return
         }
@@ -111,7 +107,7 @@ class FileService {
             setFile(fileName)
         }
         
-        guard let filePath = filePath else {
+        guard let filePath = fileUrl else {
             Log.tag(.STORAGE).d("File Path is null")
             return nil
         }
@@ -131,7 +127,7 @@ class FileService {
             return
         }
         
-        guard let filePath = filePath else {
+        guard let filePath = fileUrl else {
             Log.tag(.STORAGE).d("File Path is null")
             return
         }

@@ -36,17 +36,18 @@ class ViewController: UIViewController {
     @IBAction func onClickDocumentPicker(_ sender: Any) {
         DocumentPickerManager.shared.showDocumentPicker(vc: self)
     }
+    
     @IBAction func onClickShare(_ sender: Any) {
-        let textToShare: String = "공유 텍스트"
-        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        guard let filePath = FileService.shared.fileUrl else { return }
+        let activityViewController = UIActivityViewController(activityItems: [filePath], applicationActivities: nil)
 //        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.assignToContact]
 
         activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
             if success {
-                
-           }  else  {
-            
-           }
+                Log.tag(.SHARE).tag(.SUCCESS).d("items size: \(String(describing: items?.count))")
+            }  else  {
+                Log.tag(.SHARE).tag(.FAIL).d(error?.localizedDescription ?? "")
+            }
         }
         self.present(activityViewController, animated: true, completion: nil)
     }

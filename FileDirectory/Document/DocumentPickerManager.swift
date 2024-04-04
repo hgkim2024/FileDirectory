@@ -36,7 +36,7 @@ class DocumentPickerManager {
             return
         }
         Log.tag(.DOCUMENT).tag(.PICKER).d("fileUrl: \(fileUrl.path)")
-        FileService.shared.setFile(fileUrl)
+        FileService.shared.fileUrl = fileUrl
         
         guard let data = FileService.shared.read() else { return }
         Log.tag(.DOCUMENT).tag(.PICKER).d("data size: \(data.size)")

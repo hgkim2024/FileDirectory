@@ -13,6 +13,7 @@ enum Tag: Int {
     case STORAGE
     case PHOTO
     case DOCUMENT
+    case SHARE
     case PICKER
     case MEDIA
     case VIDEO
