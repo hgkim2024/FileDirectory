@@ -78,5 +78,5 @@
 
 <br>
 
-## 블로그 링크
+## Blog Link
 - https://www.notion.so/File-System-40de6d43d343413590f3c742c7808289?pvs=4
