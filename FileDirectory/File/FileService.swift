@@ -39,8 +39,8 @@ class FileService {
         }
         
         do {
-            if !fileManager.fileExists(atPath: directoryPath.path) {
-                try fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: false, attributes: nil)
+            if !fileManager.fileExists(atPath: parentDirectoryPath.path) {
+                try fileManager.createDirectory(at: parentDirectoryPath, withIntermediateDirectories: false, attributes: nil)
             }
         } catch let e {
             print(e.localizedDescription)
@@ -48,12 +48,15 @@ class FileService {
     }
     
     func setFile(_ fileName: String) {
-        guard let directoryPath = directoryPath else {
-            Log.tag(.STORAGE).d("Directory Path is null")
-            return
+        if let directoryPath = directoryPath {
+            fileUrl = directoryPath.appendingPathComponent(fileName)
+        } else {
+            fileUrl = parentDirectoryPath.appendingPathComponent(fileName)
         }
-        
-        fileUrl = directoryPath.appendingPathComponent(fileName)
+    }
+    
+    func clearDirectoryPath() {
+        directoryPath = nil
     }
     
     // : Overwrite file data
@@ -123,11 +126,6 @@ class FileService {
     }
     
     func remove() {
-        guard directoryPath != nil else {
-            Log.tag(.STORAGE).d("Directory Path is null")
-            return
-        }
-        
         guard let filePath = fileUrl else {
             Log.tag(.STORAGE).d("File Path is null")
             return
