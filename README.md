@@ -1,6 +1,6 @@
 ## iOS 파일 시스템 특성
 - iOS 파일 시스템은 SandBox 구조이다.
-- App SandBox는 Bundle Container, Data Container, iCloud Container 로 나누어져 있다.
+- 앱 SandBox는 Bundle Container, Data Container, iCloud Container 로 나누어져 있다.
 - **앱은 일반적으로 Container 디렉토리 외부의 파일에 접근하거나 파일을 생성 할 수 없다.**
 
 <br>
@@ -9,8 +9,7 @@
 
 <br>
 
-- [Apple Developer] File System Programming Guide 링크
-    + https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
+- **[[Apple Developer] File System Programming Guide 링크](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html)**
  
 <br>
 
